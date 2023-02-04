@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Chat</title>
+</head>
+<body>
+    <h1>GLOBAL CHAT</h1>
+    <p>Chat LOL!</p><br>
+    {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             <u><h3>{{ message }}</h3></u>
+          {% endfor %}
+       {% endif %}
+    {% endwith %}
+    <br>
+    <a href="{{ url_for('login') }}">Login</a><br>
+    <a href="{{ url_for('signup') }}">Sign Up</a><br><br>
+
+    {% if username == "Unknown"%}
+    <br><a href="{{ url_for('logout') }}">Logout</a><br>
+    {% endif %}
+
+    {% for my_item in db %}
+    <b>{{my_item.name}}:</b><br>
+    {{my_item.message}}<br><br>
+    {% endfor %}
+    <br><br><br><br><br><br>
+    <form method="post">
+      <label for="lname">Message</label>
+      <input type="text" id="lname" name="lname"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
